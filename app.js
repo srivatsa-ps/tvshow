@@ -1,9 +1,9 @@
 const form = document.querySelector('#searchForm');
 const imgContainer = document.querySelector('#showImg');
 // imgContainer.style.backgroundColor = 'lightgrey';
-imgContainer.style.fontFamily = '"Lucida Console", "Courier New", monospace';
-imgContainer.style.display = 'grid';
-imgContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
+// imgContainer.style.fontFamily = '"Lucida Console", "Courier New", monospace';
+// imgContainer.style.display = 'grid';
+// imgContainer.style.gridTemplateColumns = 'repeat(auto-fill, minmax(300px, 1fr))';
 imgContainer.style.gap = '20px';
 
 form.addEventListener('submit', async (e) => {
@@ -16,18 +16,32 @@ form.addEventListener('submit', async (e) => {
   form.elements.query.value = '';
 });
 
+{/* <div class="container text-center">
+  <div class="row row-cols-2">
+    <div class="col">Column</div>
+    <div class="col">Column</div>
+    <div class="col">Column</div>
+    <div class="col">Column</div>
+  </div> */}
+// </div>
 const addImages = (result) => {
   const newdiv = document.createElement('div');
-  newdiv.style.backgroundColor = 'white';
-  newdiv.style.padding = '10px';
-  newdiv.style.display = 'flex';
-  newdiv.style.flexDirection = 'column';
-  newdiv.style.alignItems = 'center';
-
+  newdiv.classList.add('card');
+  newdiv.classList.add('border-primary-subtle');
+  // newdiv.classList.add('text-center');
+  // newdiv.style.backgroundColor = 'white';
+  // newdiv.style.padding = '10px';
+  // newdiv.style.display = 'flex';
+  // newdiv.style.flexDirection = 'column';
+  // newdiv.style.alignItems = 'center';
+const cardbody= document.createElement('div')
   const img = document.createElement('img');
-  const p1 = document.createElement('p');
+  img.classList.add('card-img-top');
+  const p1 = document.createElement('h4');
   p1.innerText = result[0].show.name;
+  p1.classList.add('card-title')
   const li = document.createElement('ul');
+  li.classList.add('list-group')
 const r=document.createElement('p');
 const averageRating = result[0].show.rating.average;
 console.log(averageRating);
@@ -35,6 +49,7 @@ r.innerText=`Average rating:${averageRating}`
   var g = result[0].show.genres;
   for (let i = 0; i < g.length; i++) {
     var item = document.createElement('li');
+    item.classList.add('list-group-item');
     item.innerText = g[i];
     li.append(item);
   }
@@ -44,10 +59,10 @@ r.innerText=`Average rating:${averageRating}`
   img.style.maxWidth = '100%';
 
   newdiv.append(img);
-  newdiv.append(p1);
-  newdiv.append(li);
-  newdiv.append(r);
-
+  cardbody.append(p1);
+  cardbody.append(li);
+  cardbody.append(r);
+newdiv.append(cardbody)
   imgContainer.append(newdiv);
 };
 
